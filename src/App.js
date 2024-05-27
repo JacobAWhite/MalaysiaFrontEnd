@@ -8,6 +8,7 @@ import se4gdLogo from './images/se4gd.png';
 
 const courses = {
   1: {
+    id:1,
     title: "Sustainable Software",
     lecturer: "Jari Porras",
     description: "This course will look at the various aspects of software engineering from a sustinable perspective. It covers topics such as eco-friendly coding practices, energy-efficient algorithms, and the lifecycle impact of software systems. Students will learn how to design and implement software solutions that minimize environmental impact while maintaining high performance and usability.",
@@ -27,6 +28,7 @@ const courses = {
   },
   2: {
     title: "Requirements Engineering",
+    id:2,
     lecturer: "Shola Oyedeji",
     description: "This course focuses on the processes involved in gathering, analyzing, and documenting software requirements. It covers techniques for eliciting requirements from stakeholders, managing requirements throughout the software development lifecycle, and ensuring that requirements are met through validation and verification. Students will gain practical experience in creating clear, concise, and testable requirements.",
     semester: "Fall 2024",
@@ -45,6 +47,7 @@ const courses = {
   },
   3: {
     title: "Materials Engineering",
+    id:3,
     lecturer: "Susanna Koponen",
     description: "This course provides an in-depth look at the properties, processing, and applications of engineering materials. Topics include the structure and behavior of materials, material selection for engineering applications, and advancements in material science. Students will learn about the environmental impact of material choices and explore sustainable materials and technologies.",
     semester: "Summer 2024",
@@ -65,6 +68,7 @@ const courses = {
 
 function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
+
 
   const handleCourseSelect = (course) => {
     setSelectedCourse(course);
@@ -97,14 +101,6 @@ function App() {
 }
 
 function Header({ selectedCourse, setSelectedCourse }) {
-  const navigate = useNavigate();
-
-  const handleStudentSupportClick = () => {
-    if (selectedCourse) {
-      navigate(`/course/${selectedCourse.title}`);
-    }
-  };
-
   return (
     <div className={`Header ${selectedCourse ? 'header-course' : 'header-home'}`}>
       <div className="header-top">
@@ -119,19 +115,17 @@ function Header({ selectedCourse, setSelectedCourse }) {
         <nav className="navbar">
           <Link to="/" onClick={() => setSelectedCourse(null)}>Course Home</Link>
           <Link to="/content">Content</Link>
-          <Link to="/content">Assignment</Link>
+          <Link to={`/course/${selectedCourse.id}`}>Assignment</Link>
           <Link to="/assessments">Assessment</Link>
           <Link to="/grades">Grades</Link>
           <Link to="/zoom">Lecture Info</Link>
           <Link to="/course-tools">Course Tools</Link>
-          <Link to="#" onClick={handleStudentSupportClick}>Student Support</Link>
+          <Link to="/student-support">Student Support</Link>
         </nav>
       )}
     </div>
   );
 }
-
-
 
 function HomePage({ onBackToHome }) {
   const navigate = useNavigate();
@@ -218,10 +212,14 @@ function CoursePage({ onCourseSelect }) {
               <h2>{assignment.name} <span className="indicator">{expanded[index] ? '▼' : '▶'}</span></h2>
             </div>
             {expanded[index] && (
-              <div className="assignment-details">
+              <div>
+                <div className="due-date" style="background-color:Red">
                 <p>Due: {assignment.due}</p>
+                </div>
+                <div  className="assignment-details">
                 <p>Description: {assignment.description}</p>
                 <AssignmentForm assignmentName={assignment.name} />
+                </div>
               </div>
             )}
           </div>

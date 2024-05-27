@@ -273,3 +273,8 @@
 .student-support-page p {
   color: #4caf50; /* Medium green for the text */
 }
+
+.due-date {
+  font-weight: bold;
+  color: #FF0000;
+}
