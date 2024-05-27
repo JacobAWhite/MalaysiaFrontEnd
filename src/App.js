@@ -213,7 +213,7 @@ function CoursePage({ onCourseSelect }) {
             </div>
             {expanded[index] && (
               <div>
-                <div className="due-date" style="background-color:Red">
+                <div className="due-date">
                 <p>Due: {assignment.due}</p>
                 </div>
                 <div  className="assignment-details">
