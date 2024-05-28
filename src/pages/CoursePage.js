@@ -55,7 +55,7 @@ function CoursePage({ courses, onCourseSelect }) {
                                 </div>
                                 <div className="assignment-details">
                                     <p>Description: {assignment.description}</p>
-                                    <AssignmentForm assignmentName={assignment.name} />
+                                    <AssignmentForm assignmentId={assignment.id} assignmentName={assignment.name} />
                                 </div>
                             </div>
                         )}
