@@ -23,7 +23,7 @@ function AssignmentForm({ assignmentId, assignmentName }) {
         formData.append('assignmentId', assignmentId);
 
         try {
-            await axios.post('http://localhost:4001/submittedAssignments', formData, {
+            await axios.post('https://hack-malay.ew.r.appspot.com/submittedAssignments', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
